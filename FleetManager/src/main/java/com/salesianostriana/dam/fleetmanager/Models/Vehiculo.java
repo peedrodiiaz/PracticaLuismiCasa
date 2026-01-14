@@ -25,4 +25,5 @@ public class Vehiculo {
     @OneToMany(mappedBy = "vehiculo",fetch = FetchType.LAZY)
     private List<Mantenimiento>mantenimientos=new ArrayList<>();
 
+
 }
