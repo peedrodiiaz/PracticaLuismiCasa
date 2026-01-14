@@ -22,4 +22,9 @@ public class Conductor {
     @OneToMany (mappedBy = "conductor", fetch = FetchType.LAZY)
     private List<Asignacion>asignaciones = new ArrayList<>();
 
+    public void aniadirAsigancion(){
+        if (asignaciones!=null){
+            asignaciones.
+        }
+    }
 }

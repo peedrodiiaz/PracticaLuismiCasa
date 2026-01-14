@@ -28,4 +28,7 @@ public class Asignacion {
     @JoinColumn(name = "conductor_id")
     private Conductor conductor;
 
+
+
+
 }
