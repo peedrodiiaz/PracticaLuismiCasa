@@ -39,7 +39,7 @@ public class VehiculoService {
     public Optional <VehiculoDetailDto> findVehiculoByIdWithLastMantenimiento (Long vehiculoId){
         Optional<VehiculoDetailDto> vehiculo = vehiculoRepository.findResumenById(vehiculoId);
         if (vehiculo.isEmpty()){
-            throw new EntityNotFoundException("No hay vehiculo con id ".formatted(vehiculoId));
+            throw new EntityNotFoundException("No hay vehiculo con id %d ".formatted(vehiculoId));
         }
 
         return vehiculo;

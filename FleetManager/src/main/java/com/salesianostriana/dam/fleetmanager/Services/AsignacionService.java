@@ -27,10 +27,10 @@ public class AsignacionService {
     @Transactional
     public Asignacion asignarVehiculo(Long conductorId, Long vehiculoId) {
         Vehiculo vehiculo = vehiculoRepository.findById(vehiculoId).orElseThrow(
-                ()-> new EntityNotFoundException("No se ha encontrado vehiculo con id ".formatted(vehiculoId))
+                ()-> new EntityNotFoundException("No se ha encontrado vehiculo con id %d ".formatted(vehiculoId))
         );
         Conductor conductor = conductorRepository.findById(conductorId).orElseThrow(
-                ()-> new EntityNotFoundException("No se ha encontrado conductor con id ".formatted(conductorId))
+                ()-> new EntityNotFoundException("No se ha encontrado conductor con id %d".formatted(conductorId))
         );
 
         if (!conductor.getAsignaciones().isEmpty() && conductor.getAsignaciones().getLast().getFechaFin() == null) {
@@ -46,14 +46,13 @@ public class AsignacionService {
                 .conductor(conductor)
                 .vehiculo(vehiculo)
                 .build();
+        conductor.aniadirAsignacion(asignacion);
+        vehiculo.addAsignacion(asignacion);
         vehiculo.setEstado(Estado.ASIGNADO);
 
-        vehiculo.getAsignaciones().add(asignacion);
-        conductor.getAsignaciones().add(asignacion);
+        return asignacionRepository.save(asignacion);
 
-        asignacionRepository.save(asignacion);
 
-        return asignacion;
 
     }
 
@@ -87,4 +86,13 @@ public class AsignacionService {
     }
 
 
+    public List <Asignacion> getAll (){
+        List<Asignacion>lista= asignacionRepository.findAll();
+
+        if (lista.isEmpty())
+            throw new EntityNotFoundException("No hay asignaciones guardadas");
+
+        return lista;
+
+    }
 }
