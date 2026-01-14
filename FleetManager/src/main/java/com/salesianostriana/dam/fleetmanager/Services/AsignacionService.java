@@ -69,7 +69,6 @@ public class AsignacionService {
                 ()-> new EntityNotFoundException("No se ha encontrado conductor con id ".formatted(conductorId))
         );
 
-
         if (vehiculo.getEstado().equals(Estado.DISPONIBLE) || vehiculo.getEstado().equals(Estado.EN_MANTENIMIENTO)) {
             throw new IllegalArgumentException("El vehículo no estaba asignado");
         }

@@ -7,6 +7,8 @@ public record MantenimientoSummaryDto(
         String tipo,
         LocalDate fecha,
         int kmRevision,
-        String nombreTaller
+        String nombreTaller,
+        Long vehiculoId,
+        Long tallerId
 ) {
 }

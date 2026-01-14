@@ -19,4 +19,5 @@ public interface VehiculoRepository extends JpaRepository <Vehiculo,Long> {
             "(select m from Mantenimiento m where m.vehiculo = v order by m.fecha DESC limit 1)) " +
             "from Vehiculo v where v.id = ?1")
         Optional<VehiculoDetailDto> findResumenById(Long id);
+
 }
