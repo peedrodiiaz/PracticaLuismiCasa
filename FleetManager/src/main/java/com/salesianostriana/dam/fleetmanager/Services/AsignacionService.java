@@ -59,13 +59,13 @@ public class AsignacionService {
     @Transactional
     public Asignacion finalizarAsignacion (Long conductorId, Long vehiculoId, Long asignacionId){
         Vehiculo vehiculo = vehiculoRepository.findById(vehiculoId).orElseThrow(
-                ()-> new EntityNotFoundException("No se ha encontrado vehiculo con id ".formatted(vehiculoId))
+                ()-> new EntityNotFoundException("No se ha encontrado vehiculo con id %d".formatted(vehiculoId))
         );
         Conductor conductor = conductorRepository.findById(conductorId).orElseThrow(
-                ()-> new EntityNotFoundException("No se ha encontrado conductor con id ".formatted(conductorId))
+                ()-> new EntityNotFoundException("No se ha encontrado conductor con id %d".formatted(conductorId))
         );
         Asignacion asignacion = asignacionRepository.findById(asignacionId).orElseThrow(
-                ()-> new EntityNotFoundException("No se ha encontrado conductor con id ".formatted(conductorId))
+                ()-> new EntityNotFoundException("No se ha encontrado conductor con id %d ".formatted(conductorId))
         );
 
         if (vehiculo.getEstado().equals(Estado.DISPONIBLE) || vehiculo.getEstado().equals(Estado.EN_MANTENIMIENTO)) {
