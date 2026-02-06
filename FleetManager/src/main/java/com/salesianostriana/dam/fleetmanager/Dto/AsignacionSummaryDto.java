@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.fleetmanager.Dtos;
+package com.salesianostriana.dam.fleetmanager.Dto;
 
 import com.salesianostriana.dam.fleetmanager.Models.Asignacion;
 

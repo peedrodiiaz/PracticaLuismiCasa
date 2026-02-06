@@ -8,6 +8,5 @@ import java.util.Optional;
 
 public interface ConductorRepository extends JpaRepository<Conductor,Long> {
 
-    @EntityGraph(attributePaths = {"asignaciones"})
-    Optional<Conductor>findWithAsignacionesById(Long id);
+
 }

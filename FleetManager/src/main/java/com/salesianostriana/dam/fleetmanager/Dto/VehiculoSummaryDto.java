@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.fleetmanager.Dtos;
+package com.salesianostriana.dam.fleetmanager.Dto;
 
 public record VehiculoSummaryDto(Long id,
                                  String matricula,

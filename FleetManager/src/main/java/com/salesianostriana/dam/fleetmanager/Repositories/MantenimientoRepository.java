@@ -8,10 +8,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MantenimientoRepository extends JpaRepository <Mantenimiento,Long> {
-    List<Mantenimiento> findMantenimientosByVehiculoId (Long vehiculoId);
-
-    @Query("select m from Mantenimiento m where m.vehiculo.id = ?1 order by m.fecha DESC LIMIT 1")
-    Optional<Mantenimiento> findFirstByVehiculo_IdOrderByFechaDesc(Long id);
 
 
 }

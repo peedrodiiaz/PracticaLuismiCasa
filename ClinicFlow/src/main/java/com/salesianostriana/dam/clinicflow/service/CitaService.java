@@ -12,6 +12,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -69,7 +70,6 @@ public class CitaService {
     }
     public Cita createConsulta(CreateConsultaRequest dto, Long citaId) {
 
-
         Cita c = citaRepository.findById(citaId).orElseThrow(
                 () -> new EntityNotFoundException("No se ha encontrado la cita con id %d".formatted(citaId))
         );
@@ -92,8 +92,8 @@ public class CitaService {
     }
 
 
-    public Page <Cita> getAll (Pageable pageable){
-        return citaRepository.pageFindAll(pageable);
+    public Page <Cita> getAll (Pageable pageable, Specification specification){
+        return citaRepository.pageFindAll(pageable,specification );
     }
 
 

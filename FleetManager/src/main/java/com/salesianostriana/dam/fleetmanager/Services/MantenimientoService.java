@@ -1,6 +1,6 @@
 package com.salesianostriana.dam.fleetmanager.Services;
 
-import com.salesianostriana.dam.fleetmanager.Dtos.MantenimientoSummaryDto;
+import com.salesianostriana.dam.fleetmanager.Dto.CreateMantenimientoRequest;
 import com.salesianostriana.dam.fleetmanager.Models.Estado;
 import com.salesianostriana.dam.fleetmanager.Models.Mantenimiento;
 import com.salesianostriana.dam.fleetmanager.Models.Taller;
@@ -18,14 +18,14 @@ public class MantenimientoService {
     private final VehiculoRepository vehiculoRepository;
     private final TallerRepository tallerRepository;
     private final MantenimientoRepository mantenimientoRepository;
-    public Mantenimiento registrarMantenimiento (MantenimientoSummaryDto mantenimientoSummaryDto){
-        Vehiculo vehiculo = vehiculoRepository.findById(mantenimientoSummaryDto.vehiculoId()).orElseThrow(
-                ()-> new EntityNotFoundException("No se ha encontrado el vehiculo con id %d". formatted(mantenimientoSummaryDto.vehiculoId()))
+    public Mantenimiento registrarMantenimiento (CreateMantenimientoRequest mantenimientoSummaryDto){
+        Vehiculo vehiculo = vehiculoRepository.findById(mantenimientoSummaryDto.idVehiculo()).orElseThrow(
+                ()-> new EntityNotFoundException("No se ha encontrado el vehiculo con id %d". formatted(mantenimientoSummaryDto.idVehiculo()))
         );
-        Taller taller= tallerRepository.findById(mantenimientoSummaryDto.tallerId()).orElseThrow(
-                ()-> new EntityNotFoundException("No se ha encontrado al vehiculo con id %d".formatted(mantenimientoSummaryDto.tallerId()))
+        Taller taller= tallerRepository.findById(mantenimientoSummaryDto.idTaller()).orElseThrow(
+                ()-> new EntityNotFoundException("No se ha encontrado al vehiculo con id %d".formatted(mantenimientoSummaryDto.idTaller()))
         );
-        if (mantenimientoSummaryDto.kmRevision()<= vehiculo.getKmActuales())
+        if (mantenimientoSummaryDto.kmEnRevision()<= vehiculo.getKmActuales())
             throw  new IllegalArgumentException("No se puede hacer el mantenimiento porque se pasa de kilometros el coche");
 
 
@@ -37,7 +37,7 @@ public class MantenimientoService {
         Mantenimiento m = Mantenimiento.builder()
                 .tipo(mantenimientoSummaryDto.tipo())
                 .fecha(mantenimientoSummaryDto.fecha())
-                .kmEnRevision(mantenimientoSummaryDto.kmRevision())
+                .kmEnRevision(mantenimientoSummaryDto.kmEnRevision())
                 .vehiculo(vehiculo)
                 .taller(taller)
                 .build();

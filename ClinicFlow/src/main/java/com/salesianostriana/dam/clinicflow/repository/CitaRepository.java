@@ -5,14 +5,16 @@ import com.salesianostriana.dam.clinicflow.model.Estado;
 import com.salesianostriana.dam.clinicflow.model.Paciente;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface CitaRepository extends JpaRepository<Cita,Long> {
+public interface CitaRepository extends JpaRepository<Cita,Long>, JpaSpecificationExecutor<Cita> {
 
 
     @EntityGraph (attributePaths = {"paciente"})
@@ -27,8 +29,7 @@ public interface CitaRepository extends JpaRepository<Cita,Long> {
     List<Cita> findByProfesional_IdAndPaciente_Nombre(Long id, String nombre);
 
     @EntityGraph (attributePaths = {"paciente", "profesional", "consulta"})
-    @Query("select c from Cita c")
-    Page<Cita> pageFindAll(Pageable pageable);
+    Page<Cita> pageFindAll(Pageable pageable, Specification specification);
 
 
 }

@@ -9,6 +9,7 @@ import com.salesianostriana.dam.clinicflow.service.ConsultaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,9 +45,9 @@ public class CitaController {
 
     @GetMapping()
     public Page<CitaDetailDto>getAll(
-            @PageableDefault(page = 0,value = 20)Pageable pageable
+            @PageableDefault(page = 0,value = 20)Pageable pageable, Specification specification
     ){
-        return citaService.getAll(pageable).map(
+        return citaService.getAll(pageable, specification).map(
                 CitaDetailDto::of
         );
     }
