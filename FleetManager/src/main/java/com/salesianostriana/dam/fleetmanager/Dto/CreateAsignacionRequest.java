@@ -1,6 +1,6 @@
 package com.salesianostriana.dam.fleetmanager.Dto;
 
-import jakarta.validation.constraints.NotEmpty;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
@@ -10,7 +10,8 @@ public record CreateAsignacionRequest(
                 Long id,
                 @NotNull
                 Long idConductor,
-                @NotEmpty
+                @NotNull
+                @JsonFormat(pattern = "dd-MM-yy")
                 LocalDate fecha
 ) {
 }

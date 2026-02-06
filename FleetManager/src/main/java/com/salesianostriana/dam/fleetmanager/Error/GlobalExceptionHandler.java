@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-
+//
 //    @ExceptionHandler(MethodArgumentNotValidException.class)
 //    public ProblemDetail handleValidationErrors(MethodArgumentNotValidException ex) {
 //        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(

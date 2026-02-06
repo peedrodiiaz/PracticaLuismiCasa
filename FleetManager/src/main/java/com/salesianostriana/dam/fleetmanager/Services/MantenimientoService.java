@@ -25,8 +25,8 @@ public class MantenimientoService {
         Taller taller= tallerRepository.findById(mantenimientoSummaryDto.idTaller()).orElseThrow(
                 ()-> new EntityNotFoundException("No se ha encontrado al vehiculo con id %d".formatted(mantenimientoSummaryDto.idTaller()))
         );
-        if (mantenimientoSummaryDto.kmEnRevision()<= vehiculo.getKmActuales())
-            throw  new IllegalArgumentException("No se puede hacer el mantenimiento porque se pasa de kilometros el coche");
+//        if (mantenimientoSummaryDto.kmEnRevision()<= vehiculo.getKmActuales())
+//            throw  new IllegalArgumentException("No se puede hacer el mantenimiento porque se pasa de kilometros el coche");
 
 
         if (vehiculo.getEstado().equals(Estado.ASIGNADO))

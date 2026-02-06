@@ -14,7 +14,8 @@ import java.util.List;
 @Setter
 public class Conductor {
 
-    @Id@GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     private String email;

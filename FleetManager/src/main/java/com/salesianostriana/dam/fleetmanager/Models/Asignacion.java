@@ -13,7 +13,8 @@ import java.time.LocalDate;
 @Setter
 public class Asignacion {
 
-    @Id@GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private LocalDate fechaInicio;

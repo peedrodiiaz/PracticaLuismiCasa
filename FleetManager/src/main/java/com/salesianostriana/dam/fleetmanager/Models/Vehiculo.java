@@ -12,7 +12,8 @@ import java.util.List;
 @Builder
 @Getter@Setter
 public class Vehiculo {
-    @Id@GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true)

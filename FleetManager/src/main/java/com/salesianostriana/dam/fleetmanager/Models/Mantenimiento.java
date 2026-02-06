@@ -12,7 +12,8 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class Mantenimiento {
-    @Id@GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String tipo;
     private LocalDate fecha;
