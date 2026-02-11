@@ -10,4 +10,21 @@ public class ExampleSecurityApplication {
 		SpringApplication.run(ExampleSecurityApplication.class, args);
 	}
 
+
+//    @Bean
+//    CommandLineRunner cmd(UserRepository repository) {
+//        return args -> {
+//            String secretString = "qpwioeruqpiweoruqwioruqweioruqewioruqepworuqweoruqpwoeruqweioruqewu";
+//            String username = "user";
+//            SecretKey key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secretString));
+//            String token = Jwts.builder()
+//                    .subject(username)
+//                    .issuedAt(new Date())
+//                    .expiration(Date.from(Instant.now().plus(1, ChronoUnit.HOURS)))
+//                    .signWith(key, SignatureAlgorithm.HS256)
+//                    .compact();
+//            System.out.println("Token JWT generado para el usuario '" + username + "': " + token);
+//        };
+//    }
+
 }
