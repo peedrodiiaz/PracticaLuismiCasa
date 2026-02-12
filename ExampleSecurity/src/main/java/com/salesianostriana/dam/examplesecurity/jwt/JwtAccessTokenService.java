@@ -1,9 +1,9 @@
 package com.salesianostriana.dam.examplesecurity.jwt;
 
 import com.salesianostriana.dam.examplesecurity.user.User;
-import io.jsonwebtoken.JwtParser;
-import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.SignatureException;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -23,6 +23,10 @@ public class JwtAccessTokenService {
 
     private SecretKey secretKey;
 
+    public static final String TOKEN_TYPE = "JWT";
+    public static final String TOKEN_HEADER = "Authorization";
+    public static final String TOKEN_PREFIX = "Bearer ";
+
     @PostConstruct
     public void init() {
 
@@ -40,7 +44,7 @@ public class JwtAccessTokenService {
 
     public String generateAccessToken(String username) {
         return Jwts.builder()
-                .header().setType("JWT")
+                .header().setType(TOKEN_TYPE)
                 .and()
                 .subject(username)
                 .issuedAt(new java.util.Date())
@@ -51,6 +55,27 @@ public class JwtAccessTokenService {
                 .signWith(secretKey)
                 .compact();
     }
+
+    public String getUsernameFromAccessToken(String token) {
+        return jwtParser
+                .parseSignedClaims(token)
+                .getBody()
+                .getSubject();
+    }
+
+
+
+    public boolean validateAccessToken(String token) throws  JwtException{
+//        try {
+//            jwtParser.parseSignedClaims(token);
+//            return true;
+//        } catch (JwtException ex) {
+//            throw ex;
+//        }
+        jwtParser.parseSignedClaims(token);
+        return true;
+    }
+
 
 
 
